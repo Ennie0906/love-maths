@@ -15,6 +15,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
     })
   }
+
+  // When pressed enter
+  document.getElementById("answer-box").addEventListener("keydown", function (event) {
+
+    if (event.key === "Enter") {
+      checkAnswer();
+    }
+
+  })
+
   runGame("addition");
 })
 
@@ -27,6 +37,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
 function runGame(gameType) {
 
+  // Get rid of the current answer
+  document.getElementById("answer-box").value = "";
+
+  // when the page is loaded up the cursor is active  
+  document.getElementById("answer-box").focus();
+
+
+
   // Creates two random numbers
   let num1 = Math.floor(Math.random() * 25) + 1;
   let num2 = Math.floor(Math.random() * 25) + 1;
@@ -37,6 +55,8 @@ function runGame(gameType) {
     displayAdditionQuestion(num1, num2);
   } else if (gameType === "multiply") {
     displayMultiplyQuestion(num1, num2);
+  } else if (gameType === "subtract") {
+    displaySubtractQuestion(num1, num2)
   } else {
     alert(`Unknown gameType: ${gameType}`);
     throw (`Unknown gameType: ${gameType} Abrotijnb!`);
@@ -79,6 +99,8 @@ function calculateCorrectAnswer() {
     return [operand1 + operand2, "addition"]
   } else if (operator === "x") {
     return [operand1 * operand2, "multiply"]
+  } else if (operator === "-") {
+    return [operand1 - operand2, "subtract"]
   } else {
     alert(`Unimplemented operator ${operator}`)
     throw (`Unimplemented ${operator} aborting`)
@@ -115,7 +137,17 @@ function displayAdditionQuestion(operand1, operand2) {
 
 }
 
-function displaySubtractQuestion() {
+
+/**
+ * Added a tenary operator (If else statement.)
+ * if operand1 is bigger than operand2 return operand 1 
+ * if operand1 is bigger than operand2 return operand 2
+ */
+function displaySubtractQuestion(operand1, operand2) {
+
+  document.getElementById("operand1").textContent = operand1 > operand2 ? operand1 : operand2;
+  document.getElementById("operand2").textContent = operand1 > operand2 ? operand2 : operand1;
+  document.getElementById('operator').textContent = "-";
 
 }
 
