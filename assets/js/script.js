@@ -80,10 +80,10 @@ function checkAnswer() {
   let isCorrect = userAnswer === calculatedAnswer[0];
 
   if (isCorrect) {
-    alert("Well done dip shit");
+    alert("Well done!");
     incrementScore();
   } else {
-    alert(`Fucking idiot. It is ${calculatedAnswer[0]}`);
+    alert(`Wrong It is ${calculatedAnswer[0]}`);
     incrementWrongAnswer();
   }
 
